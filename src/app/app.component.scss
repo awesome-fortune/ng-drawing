@@ -1,0 +1,32 @@
+:host {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+}
+
+main {
+  grid-area: main;
+  padding: 4em 10em;
+  background-color: grey;
+}
+
+canvas {
+  border: grey solid 1px;
+  background-color: white;
+}
+
+.header {
+  grid-area: header;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.mat-divider {
+  height: 100%;
+}

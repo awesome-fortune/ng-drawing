@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Adjust stroke size</h1>
+
+<div mat-dialog-content>
+  <mat-slider thumbLabel min="1" max="40" [(value)]="strokeSize"></mat-slider>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button mat-button color="primary" [mat-dialog-close]="strokeSize">Confirm</button>
+</div>

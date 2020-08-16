@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Choose fill color</h1>
+
+<mat-divider></mat-divider>
+
+<div mat-dialog-content>
+  <mat-icon
+    matTooltip="{{ color.name }}"
+    [ngStyle]="{ color: color.value }"
+    *ngFor="let color of colors"
+    (click)="setSelectedColor(color.value)"
+  >
+    {{ selectedColor === color.value ? 'check_circle' : 'lens' }}
+  </mat-icon>
+</div>
+
+<mat-divider></mat-divider>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button color="primary" mat-button [mat-dialog-close]="selectedColor">Confirm</button>
+</div>
