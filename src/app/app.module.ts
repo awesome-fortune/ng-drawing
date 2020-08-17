@@ -12,9 +12,12 @@ import { ColorPickerDialogComponent } from './components/color-picker-dialog/col
 import { MatMenuModule } from '@angular/material/menu';
 import { StrokeSizeDialogComponent } from './components/stroke-size-dialog/stroke-size-dialog.component';
 import { MatSliderModule } from '@angular/material/slider';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
-  declarations: [AppComponent, ColorPickerDialogComponent, StrokeSizeDialogComponent],
+  declarations: [AppComponent, ColorPickerDialogComponent, StrokeSizeDialogComponent, ConfirmDialogComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -26,6 +29,8 @@ import { MatSliderModule } from '@angular/material/slider';
     MatDialogModule,
     MatMenuModule,
     MatSliderModule,
+    MatSnackBarModule,
+    MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

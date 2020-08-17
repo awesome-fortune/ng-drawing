@@ -11,10 +11,17 @@
 <main>
   <mat-toolbar>
     <mat-toolbar-row>
-      <mat-icon [ngStyle]="{ color: selectedColor }" *ngIf="!isUsingEraser">brush</mat-icon>
-      <mat-icon *ngIf="isUsingEraser" color="accent">backspace</mat-icon>
+      <mat-icon [ngStyle]="{ color: selectedColor }" *ngIf="canvasTool !== CanvasTools.Eraser">brush</mat-icon>
+      <mat-icon *ngIf="canvasTool === CanvasTools.Eraser">backspace</mat-icon>
+      <mat-chip-list disabled>
+        <mat-chip matTooltip="Current tool" [disableRipple]="true">{{ CanvasTools[canvasTool] }}</mat-chip>
+        <mat-chip matTooltip="Stroke size">{{ lineWidth }}</mat-chip>
+      </mat-chip-list>
+
       <mat-divider [vertical]="true" [inset]="true"></mat-divider>
+
       <button
+        class="color-palette-button"
         (click)="openColorPickerDialog()"
         mat-icon-button
         matTooltip="Open color palette"
@@ -48,11 +55,14 @@
       >
         <mat-icon>delete_forever</mat-icon>
       </button>
+      <button mat-icon-button matTooltip="Export drawing" [matTooltipPosition]="'right'" (click)="exportImage()">
+        <mat-icon>save_alt</mat-icon>
+      </button>
     </mat-toolbar-row>
   </mat-toolbar>
 
   <canvas
-    [ngStyle]="{ cursor: !isUsingEraser ? 'crosshair' : 'no-drop' }"
+    [ngStyle]="{ cursor: canvasTool !== CanvasTools.Eraser ? 'crosshair' : 'no-drop' }"
     #drawingCanvas
     (mousedown)="startDrawing($event)"
     (mousemove)="penMoved($event)"
@@ -67,11 +77,13 @@
 </mat-toolbar>
 
 <mat-menu #widgetMenu="matMenu">
-  <button mat-menu-item (click)="useBrush()">Brush</button>
+  <button mat-menu-item (click)="setCanvasTool(CanvasTools.Brush)">Brush</button>
   <button mat-menu-item [matMenuTriggerFor]="shapesMenu">Shapes</button>
-  <button mat-menu-item (click)="useEraser()">Eraser</button>
+  <button mat-menu-item (click)="setCanvasTool(CanvasTools.Eraser)">Eraser</button>
 </mat-menu>
 
 <mat-menu #shapesMenu="matMenu">
-  <button mat-menu-item>Rectangle</button>
+  <button mat-menu-item (click)="setCanvasTool(CanvasTools.Rectangle)">Rectangle</button>
 </mat-menu>
+
+<a href="#" #downLoadLink download="canvas-image.png">Download</a>
