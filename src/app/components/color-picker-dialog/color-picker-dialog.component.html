@@ -1,6 +1,4 @@
-<h1 mat-dialog-title>Choose fill color</h1>
-
-<mat-divider></mat-divider>
+<h1 mat-dialog-title>Choose a color</h1>
 
 <div mat-dialog-content>
   <mat-icon
@@ -12,8 +10,6 @@
     {{ selectedColor === color.value ? 'check_circle' : 'lens' }}
   </mat-icon>
 </div>
-
-<mat-divider></mat-divider>
 
 <div mat-dialog-actions>
   <button mat-button (click)="closeDialog()">Cancel</button>
